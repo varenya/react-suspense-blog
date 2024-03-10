@@ -1,4 +1,4 @@
-type Status = "Initial" | "Loading" | "Done" | "Error";
+type Status =  "Loading" | "Done" | "Error";
 
 function createResource<T>(promise: Promise<T>) {
   let status: Status = "Loading";
@@ -14,15 +14,17 @@ function createResource<T>(promise: Promise<T>) {
       error = err;
     });
   return {
-    read() {
-      console.log({ status });
+    read() : T {
       switch (status) {
         case "Loading":
           throw promise;
         case "Error":
           throw error;
         case "Done":
-          return result;
+          return result!;
+        default: {
+          return status
+        }
       }
     },
   };
