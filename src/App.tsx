@@ -1,14 +1,5 @@
-import { Card } from "./components/Card/Card.tsx";
-import { fetchText } from "./async/sample.ts";
-import { createResource } from "./async/create-resource.ts";
 import { Suspense } from "react";
-
-const textResource = createResource(fetchText());
-
-function CardWithText() {
-  const delayText = textResource.read();
-  return <Card text={delayText || ""} />;
-}
+import { Card } from "./components/Card/Card.tsx";
 
 function App() {
   return (
@@ -17,8 +8,8 @@ function App() {
         "flex min-h-screen items-center justify-center bg-gradient-to-r from-green-400 to-blue-500"
       }
     >
-      <Suspense fallback={<Card text={"loading.."} />}>
-        <CardWithText />
+      <Suspense fallback={<h1>Loading..</h1>}>
+        <Card text={"hello, world!"} />
       </Suspense>
     </div>
   );

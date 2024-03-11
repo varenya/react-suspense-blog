@@ -1,9 +1,13 @@
-function fetchText(): Promise<string> {
-  return new Promise<string>((resolve) =>
-    setTimeout(() => {
-      resolve("async text");
-    }, 1000),
-  );
+type DelayText = {
+    text: string;
+    delay: number;
+};
+function fetchText({ text, delay }: DelayText): Promise<string> {
+    return new Promise<string>((resolve) =>
+        setTimeout(() => {
+            resolve(text);
+        }, delay),
+    );
 }
 
 export { fetchText };
