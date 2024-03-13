@@ -19,7 +19,7 @@ function createResource<T>(promise: Promise<T>) {
                 case "Loading":
                     throw promise;
                 case "Error":
-                    throw error;
+                    throw error; /* error scenario */
                 case "Done":
                     return result!;
                 default: {
